@@ -2,6 +2,11 @@
 
 **SingleCellDesk** is a modular and user-friendly R toolkit for downstream analysis of single-cell RNA-seq (scRNA-seq) datasets. It enables fast and customizable exploration of count matrix–level data using standard workflows, including quality control, clustering, trajectory inference, and cell-cell interaction analysis.
 
+## 📄 Project Links
+- 📂 [Source Code](https://github.com/biosciences/SingleCellDesk): Explore the full repository
+- 🔗 [Live Report](https://biosciences.github.io/SingleCellDesk/SingleCellDesk_Analysis_static.html): View the interactive HTML output
+
+
 ## 🔍 Features
 
 - Quality control with Seurat
