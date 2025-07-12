@@ -1,0 +1,70 @@
+---
+title: "SingleCellDesk Example Analysis"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+library(Seurat)
+library(ggplot2)
+library(patchwork)
+```
+
+## 📥 Choose Dataset Format
+
+Set the variable below to either `"10x"` or `"GSE165722"` depending on your dataset:
+
+```{r choose-loader}
+# Set dataset type: "10x" for Cell Ranger-style, "GSE165722" for customized format
+#dataset_type <- "10x"
+dataset_type <- "GSE165722"
+
+if (dataset_type == "10x") {
+  source("scripts/00_load_all_samples.R")
+} else if (dataset_type == "GSE165722") {
+  source("scripts/GSE165722/00_load_all_samples.R")
+} else {
+  stop("Invalid dataset_type selected")
+}
+```
+
+## 🔬 Step 1: Quality Control
+
+```{r step1-qc}
+source("scripts/GSE165722/01_qc_filtering.R")
+```
+
+## 🔬 Step 2: Normalization and Clustering
+
+```{r step2-cluster}
+source("scripts/02_normalization_clustering.R")
+```
+
+## 🔬 Step 3: Marker Identification and Annotation
+
+```{r step3-annotation}
+source("scripts/03_annotation_markers.R")
+```
+
+## 🔬 Step 4: Pseudotime Inference with Monocle3
+
+```{r step4-pseudotime}
+source("scripts/04_trajectory_monocle.R")
+```
+
+## 🔬 Step 5: Cell-Cell Communication with CellChat
+
+```{r step5-cellchat}
+source("scripts/05_cellchat_interaction.R")
+```
+
+## 📊 Step 6: Summary Plots
+
+```{r step6-plots}
+source("scripts/06_plots_summary.R")
+```
+
+## 📌 Notes
+
+- For GSE165722, the `.counts.tsv.gz` and `.cellname.txt.gz` pairs are expected in `data/GSE165722/extracted/`
+- For 10x, use individual `filtered_feature_bc_matrix/` directories for each sample.

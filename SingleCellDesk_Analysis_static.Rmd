@@ -1,0 +1,87 @@
+---
+title: "SingleCellDesk Example Analysis"
+output: html_document
+---
+
+```{r setup, include=FALSE, eval=FALSE}
+```
+
+## 📥 Choose Dataset Format
+
+This analysis use dataset "GSE165722", the data source citation:
+
+> J Tu, W Li, S Yang, P Yang, Q Yan, S Wang, K Lai, X Bai, C Wu, W Ding, J Cooper‐White, A Diwan, C Yang, H Yang, J Zou (2021). Single‐Cell Transcriptome Profiling Reveals Multicellular Ecosystem of Nucleus Pulposus during Degeneration Progression. Advanced Science 9(3). Impact Factor: 15.1 (2022)
+
+If you use SingleCellDesk in your research, please cite the associated JOSS paper (under review). You can also cite the software repository:
+
+> K Lai (2024). SingleCellDesk: A Modular Toolkit for Downstream Single-Cell RNA-seq Analysis in R. Journal of Open Source Software (under review). https://github.com/biosciences/SingleCellDesk
+
+```{r choose-loader, eval=FALSE}
+```
+
+## 🔬 Step 1: Quality Control
+
+```{r step1-qc, eval=FALSE}
+```
+
+## 🔬 Step 2: Normalization and Clustering
+
+```{r step2-cluster, eval=FALSE}
+```
+
+## 🔬 Step 3: Marker Identification and Annotation
+
+```{r step3-annotation, eval=FALSE}
+```
+
+## 🔬 Step 4: Pseudotime Inference with Monocle3
+
+```{r step4-pseudotime, eval=FALSE}
+```
+
+## 🔬 Step 5: Cell-Cell Communication with CellChat
+
+```{r step5-cellchat, eval=FALSE}
+```
+
+## 📊 Step 6: Summary Plots
+
+```{r step6-plots, eval=FALSE}
+```
+
+## 📌 Notes
+
+- For GSE165722, the `.counts.tsv.gz` and `.cellname.txt.gz` pairs are expected in `data/GSE165722/extracted/`
+- For 10x, use individual `filtered_feature_bc_matrix/` directories for each sample.
+## 📊 Additional Static Results
+
+### Marker Genes (Preview)
+
+```{r, echo=FALSE}
+head(read.csv("results/tables/marker_genes_all_clusters.csv"))
+```
+### QC Violin Plot
+
+```{r, echo=FALSE, fig.cap='QC Violin Plot'}
+knitr::include_graphics("results/plots/qc_vlnplot.png")
+```
+### UMAP Clustering (Default)
+
+```{r, echo=FALSE, fig.cap='UMAP Clusters'}
+knitr::include_graphics("results/plots/umap_clusters_default.png")
+```
+### t-SNE Clustering with Cell Types
+
+```{r, echo=FALSE, fig.cap='tSNE Clusters by Cell Type'}
+knitr::include_graphics("results/plots/tsne_clusters_celltype.png")
+```
+### DotPlot of Top Markers
+
+```{r, echo=FALSE, fig.cap='Top Marker DotPlot'}
+knitr::include_graphics("results/plots/dotplot_top_markers.png")
+```
+### Barplot: Cell Type Distribution
+
+```{r, echo=FALSE, fig.cap='Cell Type Distribution Barplot'}
+knitr::include_graphics("results/plots/barplot_celltype_distribution.png")
+```
