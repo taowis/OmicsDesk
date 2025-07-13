@@ -4,7 +4,7 @@
 
 ## 📄 Project Links
 - 📂 [Source Code](https://github.com/biosciences/SingleCellDesk): Explore the full repository
-- 🔗 [Live Report](https://biosciences.github.io/SingleCellDesk/SingleCellDesk_Analysis_static.html): View the interactive HTML output
+- 🔗 [Live Demo Report](https://biosciences.github.io/SingleCellDesk/SingleCellDesk_Analysis_static.html): View the interactive HTML output
 
 
 ## 🔍 Features
