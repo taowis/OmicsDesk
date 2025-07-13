@@ -17,7 +17,7 @@ markers <- FindAllMarkers(seurat_obj,
                           min.pct = 0.25,
                           logfc.threshold = 0.25)
 
-write.csv(markers, "results/marker_genes_all_clusters.csv", row.names = FALSE)
+write.csv(markers, "results/tables/marker_genes_all_clusters.csv", row.names = FALSE)
 
 # --- DotPlot of top markers ---
 top10 <- markers %>%

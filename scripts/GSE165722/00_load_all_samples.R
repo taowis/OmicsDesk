@@ -5,39 +5,32 @@ library(Seurat)
 library(Matrix)
 library(data.table)
 
-input_dir <- "data/GSE165722/extracted"
-files <- list.files(input_dir, pattern = "counts.tsv.gz$", full.names = TRUE)
-
+data_dir <- "data/GSE165722/extracted"
+sample_files <- list.files(data_dir, pattern = "counts.tsv.gz$", full.names = TRUE)
 seurat_list <- list()
 
-for (count_file in files) {
-  sample_id <- sub("\\.counts\\.tsv\\.gz$", "", basename(count_file))
-  map_file <- file.path(input_dir, paste0(sample_id, ".cellname.txt.gz"))
+for (count_file in sample_files) {
+  sample_id <- gsub("_Sample.*", "", basename(count_file))
+  message("Loading sample: ", basename(count_file))
 
-  message("Loading sample: ", sample_id)
-
-  # Load matrix and cell name mapping
+  # Load count matrix and extract gene names
   mat <- fread(count_file)
-  rownames(mat) <- mat[[1]]
+  gene_names <- mat[[1]]
   mat[[1]] <- NULL
-  col_ids <- colnames(mat)
+  rownames(mat) <- make.unique(gene_names)  # preserve original gene names
 
-  cell_map <- fread(map_file)
-  colnames(cell_map) <- c("CellName", "CellIndex")
-  colname_map <- setNames(cell_map$CellName, cell_map$CellIndex)
-
-  # Replace column names (e.g., C1 -> real barcode)
-  real_colnames <- colname_map[col_ids]
-  if (any(is.na(real_colnames))) {
-    stop("Missing cell name mapping for some columns in ", sample_id)
+  # Load barcode mapping
+  map_file <- gsub("counts.tsv.gz", "cellname.txt.gz", count_file)
+  if (file.exists(map_file)) {
+    cell_map <- fread(map_file)
+    colnames(mat) <- cell_map$CellName
+  } else {
+    warning("Missing cellname.txt.gz for ", sample_id)
   }
-  colnames(mat) <- real_colnames
 
-  # Convert to sparse and create Seurat object
-  sparse_mat <- Matrix(as.matrix(mat), sparse = TRUE)
-  seurat_obj <- CreateSeuratObject(counts = sparse_mat, project = sample_id)
-  seurat_obj$orig.ident <- sample_id
-  seurat_list[[sample_id]] <- seurat_obj
+  # Create Seurat object
+  seurat_obj <- CreateSeuratObject(counts = mat, project = sample_id)
+  seurat_list[[basename(count_file)]] <- seurat_obj
 }
 
 saveRDS(seurat_list, file = "results/seurat_list_all_samples.rds")
