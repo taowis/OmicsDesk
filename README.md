@@ -26,7 +26,7 @@ This project compares two approaches for annotating cell types in nucleus pulpos
 
 We used **SingleR** to assign global cell type identities based on reference datasets such as the Human Primary Cell Atlas. This method helps identify broad cell categories (e.g., MSCs, T cells) based on transcriptional similarity across tissues.
 
-The result is visualized in `tsne_clusters_celltype.png`.
+The result is visualized in `umap_clusters_celltype.png`.
 
 ---
 
@@ -34,7 +34,7 @@ The result is visualized in `tsne_clusters_celltype.png`.
 
 To refine cell type annotation beyond global references, we applied **AUCell** to perform signature score enrichment using NPC subtype marker genes reported by Ji Tu *et al.*. This approach quantifies the activation level of each subtype signature per cell. Unlike tsne_clusters_celltype.png, which shows general cell types inferred from reference datasets (e.g., SingleR), tsne_npc_subtypes_auc.png reflects functional NPC subtypes based on marker gene enrichment, offering tissue-specific insights.
 
-The result is visualized in `tsne_npc_subtypes_auc.png`.
+The result is visualized in `umap_npc_subtypes_auc.png`.
 
 ---
 
