@@ -4,7 +4,7 @@
 
 ## 📄 Project Links
 - 📂 [Source Code](https://github.com/biosciences/SingleCellDesk): Explore the full repository
-- 🔗 [Live Demo Report](https://biosciences.github.io/SingleCellDesk/SingleCellDesk_Analysis_static.html): View the interactive HTML output
+- 🔗 [Live Demo Report](https://biosciences.github.io/SingleCellDesk/SingleCellDesk_Analysis.html): View the interactive HTML output
 
 
 ## 🔍 Features
@@ -15,6 +15,40 @@
 - Pseudotime trajectory analysis using Monocle3
 - Ligand-receptor signaling inference with CellChat
 - Modular script-based structure suitable for any 10x-style input
+
+# The Cell Type Annotation
+
+This project compares two approaches for annotating cell types in nucleus pulposus (NPC) single-cell RNA-seq data.
+
+---
+
+## 🌐 Global Reference Annotation (SingleR)
+
+We used **SingleR** to assign global cell type identities based on reference datasets such as the Human Primary Cell Atlas. This method helps identify broad cell categories (e.g., MSCs, T cells) based on transcriptional similarity across tissues.
+
+The result is visualized in `tsne_clusters_celltype.png`.
+
+---
+
+## 📌 NPC Subtype Annotation via Signature Score Enrichment (AUCell)
+
+To refine cell type annotation beyond global references, we applied **AUCell** to perform signature score enrichment using NPC subtype marker genes reported by Ji Tu *et al.*. This approach quantifies the activation level of each subtype signature per cell. Unlike tsne_clusters_celltype.png, which shows general cell types inferred from reference datasets (e.g., SingleR), tsne_npc_subtypes_auc.png reflects functional NPC subtypes based on marker gene enrichment, offering tissue-specific insights.
+
+The result is visualized in `tsne_npc_subtypes_auc.png`.
+
+---
+
+## 🔍 Key Differences Between Annotation Strategies
+
+| Aspect | 🌐 **Global Reference Annotation (SingleR)** | 📌 **NPC Subtype Annotation via Signature Score Enrichment (AUCell)** |
+|--------|---------------------------------------------|------------------------------------------------------------------------|
+| **Goal** | Assign broad cell type labels using a global reference dataset | Quantify enrichment of known NPC subtype signatures |
+| **Reference** | Global references (e.g., Human Primary Cell Atlas, Blueprint) | NPC subtype marker genes from Ji Tu *et al.* |
+| **Resolution** | General (e.g., MSCs, T cells, monocytes) | Fine-grained (e.g., HT-CLNP, FibroNPCs, Effector NPCs) |
+| **Method** | Correlation with reference expression profiles | AUCell AUC scoring over ranked gene expression |
+| **Output** | Discrete cell type labels per cell | Continuous enrichment scores per cell per signature |
+| **Best for** | Cross-tissue or pan-cell type comparisons | Tissue-specific functional annotation of IVD cells |
+
 
 ## 📁 Folder Structure
 
@@ -111,4 +145,4 @@ MIT License © Kaitao Lai
 
 If you use SingleCellDesk in your research, please cite the associated JOSS paper (under review). You can also cite the software repository:
 
-> K Lai (2024). SingleCellDesk: A Modular Toolkit for Downstream Single-Cell RNA-seq Analysis in R. Journal of Open Source Software (under review). https://github.com/biosciences/SingleCellDesk
+> K Lai (2024). *SingleCellDesk: A Modular Toolkit for Downstream Single-Cell RNA-seq Analysis in R*. Journal of Open Source Software (under review). https://github.com/biosciences/SingleCellDesk

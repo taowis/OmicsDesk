@@ -7,7 +7,7 @@ library(SeuratWrappers)
 library(ggplot2)
 
 message("🔁 Loading Seurat object...")
-seurat_obj <- readRDS("results/seurat_annotated.rds")
+seurat_obj <- readRDS("results/rds/seurat_annotated.rds")
 
 # Convert to CellDataSet
 cds <- as.cell_data_set(seurat_obj)
@@ -49,7 +49,7 @@ if (!all(is.na(pseudotime(cds)))) {
 
 # Save results
 seurat_obj$pseudotime <- pseudotime(cds)
-saveRDS(seurat_obj, "results/seurat_with_pseudotime.rds")
-saveRDS(cds, "results/cds_pseudotime.rds")
+saveRDS(seurat_obj, "results/rds/seurat_with_pseudotime.rds")
+saveRDS(cds, "results/rds/cds_pseudotime.rds")
 
 message("✅ Trajectory analysis complete.")

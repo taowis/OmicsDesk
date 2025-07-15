@@ -22,4 +22,4 @@ VlnPlot(seurat_obj, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"), nc
 seurat_obj <- subset(seurat_obj, subset = nFeature_RNA > 200 & nFeature_RNA < 5000 & percent.mt < 20)
 
 # Save object
-saveRDS(seurat_obj, file = "results/seurat_qc.rds")
+saveRDS(seurat_obj, file = "results/rds/seurat_qc.rds")

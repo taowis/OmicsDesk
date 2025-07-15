@@ -8,7 +8,7 @@ library(patchwork)
 library(ggplot2)
 
 # Load clustered Seurat object
-seurat_obj <- readRDS("results/seurat_clustered.rds")
+seurat_obj <- readRDS("results/rds/seurat_clustered.rds")
 seurat_obj <- PrepSCTFindMarkers(seurat_obj)
 
 # --- Marker Detection ---
@@ -51,5 +51,5 @@ barplot <- ggplot(prop_df, aes(x = Sample, y = Freq, fill = CellType)) +
 ggsave("results/plots/barplot_celltype_distribution.png", plot = barplot, width = 8, height = 5)
 
 # Save final annotated Seurat object
-saveRDS(seurat_obj, file = "results/seurat_annotated.rds")
+saveRDS(seurat_obj, file = "results/rds/seurat_annotated.rds")
 message("✅ Marker detection, annotation, and figure export complete.")

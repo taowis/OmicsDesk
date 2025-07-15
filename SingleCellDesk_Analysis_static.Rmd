@@ -57,16 +57,24 @@ knitr::include_graphics("results/plots/qc_vlnplot.png")
 
 ```{r step2-cluster, eval=FALSE}
 ```
+### 🌐 Global Reference Annotation (SingleR)
 
-### UMAP Clustering (Default)
+Global cell type identities are assigned using **SingleR**, referencing transcriptional profiles from datasets such as the Human Primary Cell Atlas. This method enables the identification of broad cell categories (e.g., MSCs, T cells) based on cross-tissue gene expression similarity.
+
+#### UMAP Clustering (Default)
 
 ```{r, echo=FALSE, fig.cap='UMAP Clusters'}
 knitr::include_graphics("results/plots/umap_clusters_default.png")
 ```
-### t-SNE Clustering with Cell Types
 
-```{r, echo=FALSE, fig.cap='tSNE Clusters by Cell Type'}
-knitr::include_graphics("results/plots/tsne_clusters_celltype.png")
+### 📌 NPC Subtype Annotation via Signature Score Enrichment (AUCell)
+
+This approach evaluates the activation level of each NPC subtype signature at the single-cell level using **AUCell**. While umap_clusters_celltype.png displays general cell type classifications inferred from global references, umap_npc_subtypes_auc.png reveals functionally distinct NPC subtypes based on enrichment of tissue-specific marker genes.
+
+#### UMAP Clustering (Default)
+
+```{r, echo=FALSE, fig.cap='UMAP Clusters'}
+knitr::include_graphics("results/plots/umap_npc_subtypes_auc.png")
 ```
 
 ## 🔬 Step 3: Marker Identification and Annotation

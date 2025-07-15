@@ -5,8 +5,8 @@ library(CellChat)
 library(patchwork)
 library(Seurat)
 
-seurat_obj <- readRDS("results/seurat_annotated.rds")
-data.input <- GetAssayData(seurat_obj, assay = "SCT", slot = "data")
+seurat_obj <- readRDS("results/rds/seurat_annotated.rds")
+data.input <- GetAssayData(seurat_obj, assay = "SCT", layer = "data")
 meta <- seurat_obj@meta.data
 
 cellchat <- createCellChat(object = data.input, meta = meta, group.by = "celltype")
@@ -22,4 +22,4 @@ cellchat <- aggregateNet(cellchat)
 
 netVisual_circle(cellchat@net$count, vertex.weight = as.numeric(table(cellchat@idents)), weight.scale = T)
 
-saveRDS(cellchat, file = "results/cellchat.rds")
+saveRDS(cellchat, file = "results/rds/cellchat.rds")

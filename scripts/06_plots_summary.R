@@ -5,7 +5,7 @@ library(Seurat)
 library(ggplot2)
 library(patchwork)
 
-seurat_obj <- readRDS("results/seurat_annotated.rds")
+seurat_obj <- readRDS("results/rds/seurat_annotated.rds")
 
 p1 <- DimPlot(seurat_obj, reduction = "umap", group.by = "celltype", label = TRUE) + ggtitle("Cell Type")
 p2 <- VlnPlot(seurat_obj, features = c("nFeature_RNA", "percent.mt"), ncol = 2)
