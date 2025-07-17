@@ -42,7 +42,8 @@ This analysis use dataset "GSE165722".
 ```{r choose-loader, eval=FALSE}
 ```
 
-## 🔬 Step 1: Quality Control
+## 🧼 Step 1: Quality Control and Filtering
+Filter low-quality cells based on UMI count, gene number, and mitochondrial content using Seurat. This step ensures robust downstream analysis by removing potential doublets and stressed or dying cells.
 
 ```{r step1-qc, eval=FALSE}
 ```
@@ -53,7 +54,8 @@ This analysis use dataset "GSE165722".
 knitr::include_graphics("results/plots/qc_vlnplot.png")
 ```
 
-## 🔬 Step 2: Normalization and Clustering
+## ⚙️ Step 2: Normalization, Dimensionality Reduction, and Clustering
+Normalize gene expression data, identify variable genes, scale the matrix, and reduce dimensionality using PCA and UMAP. Perform graph-based clustering to define transcriptionally distinct cell groups.
 
 ```{r step2-cluster, eval=FALSE}
 ```
@@ -77,7 +79,8 @@ This approach evaluates the activation level of each NPC subtype signature at th
 knitr::include_graphics("results/plots/umap_npc_subtypes_auc.png")
 ```
 
-## 🔬 Step 3: Marker Identification and Annotation
+## 🧬 Step 3: Marker Identification and Cell Type Annotation
+Identify differentially expressed genes for each cluster using Seurat’s `FindAllMarkers()`. Combine marker gene expression with reference-based annotation tools (e.g., SingleR) to assign cell types.
 
 ```{r step3-annotation, eval=FALSE}
 ```
@@ -100,6 +103,8 @@ knitr::include_graphics("results/plots/barplot_celltype_distribution.png")
 ```
 
 ## 🔬 Step 4: Pseudotime Inference with Monocle3
+Use Monocle3 to infer dynamic developmental trajectories among selected clusters. Order cells along pseudotime and visualize progression paths to study lineage relationships during degeneration.
+
 
 ```{r step4-pseudotime, eval=FALSE}
 ```
@@ -110,11 +115,27 @@ knitr::include_graphics("results/plots/barplot_celltype_distribution.png")
 knitr::include_graphics("results/plots/pseudotime_plot.png")
 ```
 
-## 🔬 Step 5: Cell-Cell Communication with CellChat
+## 🔗 Step 5: Cell-Cell Communication with CellChat
+Perform ligand-receptor analysis using CellChat to explore cell-cell interactions among NPC subpopulations or all clusters. Identify enriched signaling pathways and visualize the intercellular network.
 
 ```{r, echo=FALSE, fig.cap='Cell-cell communication of NPC populations'}
 knitr::include_graphics("results/plots/cellchat_circle_plot.png")
 ```
+
+## 🧬 Step 6: Stemness Potential Scoring with CytoTRACE
+Use CytoTRACE to infer differentiation potential and cellular plasticity based on gene counts and transcriptional diversity. This step helps to highlight progenitor-like populations within NPC clusters.
+
+## 🧠 Step 7: Transcription Factor Network Inference with SCENIC
+Apply the SCENIC pipeline to construct gene regulatory networks and infer regulon activity across single cells. This identifies key transcription factors and their target modules associated with IVDD progression.
+
+## 🔁 Step 8: Pathway Enrichment via GSEA (fgsea)
+Perform gene set enrichment analysis using the fgsea method with Hallmark gene sets. This highlights stage-specific biological pathways such as TNF, MAPK, or unfolded protein response during disc degeneration.
+
+## 📊 Step 9: Signature Activity Scoring with AUCell
+Use AUCell to compute the activation level of gene signatures (e.g., SASP, ECM remodeling) in individual cells. This provides fine-grained insights into heterogeneous transcriptional programs across NPC states.
+
+## 🧫 Step 10: Immune Subset Reclustering and Exploration
+Isolate immune cell subsets (e.g., G-MDSCs, macrophages, T cells) for focused reclustering and downstream analysis. This enables functional dissection of the immune microenvironment in NP degeneration.
 
 ## 📌 Notes
 
