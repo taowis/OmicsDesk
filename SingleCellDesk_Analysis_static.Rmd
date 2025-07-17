@@ -112,7 +112,8 @@ knitr::include_graphics("results/plots/pseudotime_plot.png")
 
 ## 🔬 Step 5: Cell-Cell Communication with CellChat
 
-```{r step5-cellchat, eval=FALSE}
+```{r, echo=FALSE, fig.cap='Cell-cell communication of NPC populations'}
+knitr::include_graphics("results/plots/cellchat_circle_plot.png")
 ```
 
 ## 📌 Notes
