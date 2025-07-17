@@ -7,13 +7,14 @@ University of Sydney
 Corresponding author: kaitao.lai@sydney.edu.au
 
 # Summary
-We present **SingleCellDesk**, a modular R-based toolkit designed to facilitate downstream analysis of single-cell RNA-seq (scRNA-seq) datasets. This streamlined and structured framework enables analysis of count matrix-level data for quality control, clustering, annotation, trajectory inference, and cell-cell interaction exploration. We illustrate the utility of SingleCellDesk using GSE165722, a human nucleus pulposus (NP) scRNA-seq dataset across various stages of intervertebral disc degeneration (IVDD). SingleCellDesk simplifies scRNA-seq workflows and enables flexible interpretation of complex datasets.
+We present **SingleCellDesk**, a modular R-based toolkit designed to facilitate downstream analysis of single-cell RNA-seq (scRNA-seq) datasets. This streamlined and structured framework enables analysis of count matrix-level data for quality control, clustering, annotation, trajectory inference, transcriptional regulation, pathway scoring, and cell-cell interaction exploration. We illustrate the utility of SingleCellDesk using GSE165722, a human nucleus pulposus (NP) scRNA-seq dataset across various stages of intervertebral disc degeneration (IVDD). SingleCellDesk simplifies scRNA-seq workflows and enables flexible interpretation of complex datasets.
 
 # Statement of Need
 Although many scRNA-seq datasets are publicly available, downstream analysis workflows are often inconsistent and fragmented. **SingleCellDesk** addresses this need by offering:
 - A structured and user-friendly approach for processing count matrix data
-- Integration of standard analytical steps including clustering, annotation, and pseudotime analysis
+- Integration of standard analytical steps including clustering, annotation, pseudotime, and signaling analysis
 - Support for visualization and interpretation of cell-cell communication patterns
+- Support for TF regulatory analysis, cell senescence scoring, and immune subsetting
 - Easy adaptation to various biological systems and study designs
 
 This toolkit is valuable for both computational and experimental researchers seeking efficient and transparent ways to explore single-cell transcriptomics.
@@ -26,7 +27,11 @@ The toolkit is implemented in R and available as a modular project with well-org
 - **03_annotation_markers.R**: Identifies cluster markers and supports manual/automated annotation
 - **04_trajectory_monocle.R**: Infers pseudotime using Monocle3
 - **05_cellchat_interaction.R**: Computes ligand-receptor signaling networks via CellChat
-- **06_plots_summary.R**: Assembles summary figures and publication-ready plots
+- **06_cytotrace.R**: Stemness potential scoring using CytoTRACE
+- **07_scenic.R**: Transcription factor regulatory network analysis using SCENIC
+- **08_gsea.R**: Pathway enrichment analysis using fgsea
+- **09_auc_score.R**: AUCell-based gene signature scoring (e.g., SASP)
+- **10_subset_immune.R**: Immune cell subset reclustering and analysis
 
 Seurat objects and figures are saved in `results/`. A script `install.R` installs all required packages.
 

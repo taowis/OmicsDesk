@@ -49,6 +49,67 @@ The result is visualized in `umap_npc_subtypes_auc.png`.
 | **Output** | Discrete cell type labels per cell | Continuous enrichment scores per cell per signature |
 | **Best for** | Cross-tissue or pan-cell type comparisons | Tissue-specific functional annotation of IVD cells |
 
+## Modules
+
+### `01_qc_filtering.R`
+- Performs **initial quality control and filtering** using Seurat.
+- Filters cells based on gene count, UMI count, and mitochondrial gene percentage.
+- Generates violin plots and scatter plots to visualize QC thresholds.
+
+### `02_normalization_clustering.R`
+- Conducts **data normalization, scaling, and clustering** of cells.
+- Identifies variable features, performs PCA and UMAP, and computes neighborhood graph.
+- Clusters cells and generates UMAP plots for visual inspection of cluster structure.
+
+### `03_annotation_markers.R`
+- Identifies **cluster-specific marker genes** using differential expression.
+- Supports manual and automated **cell type annotation** (e.g., using SingleR).
+- Exports top markers and generates dot plots and heatmaps for marker expression.
+
+### `04_trajectory_monocle.R`
+- Applies **Monocle3 to infer pseudotime trajectories** among specified clusters.
+- Constructs principal graph and orders cells along a learned developmental axis.
+- Visualizes pseudotime progression and trajectory branches in UMAP space.
+
+### `05_cellchat_interaction.R`
+- Runs **CellChat ligand-receptor interaction analysis** on selected NPC subpopulations.
+- Computes overexpressed signaling genes and interaction probabilities.
+- Generates circle plots and network heatmaps to explore signaling dynamics.
+
+### `06_cytotrace.R`
+- Performs **stemness inference** using CytoTRACE.
+- Adds CytoTRACE scores to Seurat object and visualizes differentiation potential.
+
+### `07_scenic.R`
+- Runs **SCENIC transcription factor network analysis**.
+- Outputs regulon activity matrix and plots regulon landscape in 2D embedding.
+
+### `08_gsea.R`
+- Conducts **GSEA pathway enrichment** using `fgsea` with Hallmark gene sets.
+- Identifies key signaling changes across IVDD severity grades.
+
+### `09_auc_score.R`
+- Uses **AUCell** to compute per-cell enrichment of selected gene sets (e.g., SASP).
+- Adds AUC scores to Seurat metadata for downstream visualization.
+
+### `10_subset_immune.R`
+- Subsets immune-related cell types (e.g., macrophages, T cells, G-MDSCs).
+- Re-normalizes, re-clusters, and saves immune subset Seurat object for specialized analysis.
+
+## Prerequisites
+
+All scripts assume a pre-processed `Seurat` object (`seurat_obj`) with:
+- Normalized RNA assay (`RNA`)
+- Cluster assignments stored in `Idents(seurat_obj)`
+For GSE165722 dataset
+- IVDD grade annotations where relevant
+
+## Notes
+
+- Scripts can be executed independently or chained as needed.
+- Output figures are generated for each module.
+- Adjust cluster/marker names according to your dataset annotations.
+
 
 ## 📁 Folder Structure
 
@@ -85,7 +146,11 @@ source("scripts/02_normalization_clustering.R")
 source("scripts/03_annotation_markers.R")
 source("scripts/04_trajectory_monocle.R")
 source("scripts/05_cellchat_interaction.R")
-source("scripts/06_plots_summary.R")
+source("scripts/06_cytotrace.R")
+source("scripts/07_scenic.R")
+source("scripts/08_gsea.R")
+source("scripts/09_auc_score.R")
+source("scripts/10_subset_immune.R")
 ```
 
 ## 🧪 Unit Testing
