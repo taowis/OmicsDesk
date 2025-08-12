@@ -1,10 +1,10 @@
-# SingleCellDesk
+# OmicsDesk
 
-**SingleCellDesk** is a modular and user-friendly R toolkit for downstream analysis of single-cell RNA-seq (scRNA-seq) datasets. It enables fast and customizable exploration of count matrix–level data using standard workflows, including quality control, clustering, trajectory inference, and cell-cell interaction analysis.
+**OmicsDesk** is a modular and user-friendly R toolkit for downstream analysis of single-cell RNA-seq (scRNA-seq) and spatial transcriptomics (ST) datasets. It supports fast, customizable exploration of count-level data with standard and advanced workflows, including quality control, clustering, cell type annotation, trajectory inference, ligand–receptor interaction analysis, spatial mapping, and multi-modal integration (e.g., scRNA + ST, batch correction, MOFA+, scVI).
 
 ## 📄 Project Links
-- 📂 [Source Code](https://github.com/biosciences/SingleCellDesk): Explore the full repository
-- 🔗 [Live Demo Report](https://biosciences.github.io/SingleCellDesk/SingleCellDesk_Analysis.html): View the interactive HTML output
+- 📂 [Source Code](https://github.com/biosciences/OmicsDesk): Explore the full repository
+- 🔗 [Live Demo Report](https://biosciences.github.io/OmicsDesk/OmicsDesk_Analysis.html): View the interactive HTML output
 
 
 ## 🔍 Features
@@ -179,8 +179,8 @@ OmicsDesk/
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your_username/SingleCellDesk.git
-cd SingleCellDesk
+git clone https://github.com/your_username/OmicsDesk.git
+cd OmicsDesk
 ```
 
 2. Install R packages:
@@ -257,6 +257,6 @@ MIT License © Kaitao Lai
 
 ## 📬 Citation
 
-If you use SingleCellDesk in your research, please cite the associated JOSS paper (under review). You can also cite the software repository:
+If you use OmicsDesk in your research, please cite the associated JOSS paper (under review). You can also cite the software repository:
 
-> K Lai (2024). *SingleCellDesk: A Modular Toolkit for Downstream Single-Cell RNA-seq Analysis in R*. Journal of Open Source Software (under review). https://github.com/biosciences/SingleCellDesk
+> K Lai (2024). *OmicsDesk: A Modular Toolkit for Downstream Single-Cell RNA-seq Analysis in R*. Journal of Open Source Software (under review). https://github.com/biosciences/OmicsDesk
