@@ -9,12 +9,14 @@
 
 ## 🔍 Features
 
-- Quality control with Seurat
-- Clustering and UMAP embedding
-- Cell type annotation via marker genes or SingleR
-- Pseudotime trajectory analysis using Monocle3
-- Ligand-receptor signaling inference with CellChat
-- Modular script-based structure suitable for any 10x-style input
+- 🧹 **Quality control** with Seurat
+- 🌀 **Clustering** and **UMAP** embedding
+- 🏷️ **Cell type annotation** via marker genes or SingleR
+- ⏳ **Pseudotime trajectory analysis** using Monocle3
+- 📡 **Ligand-receptor signaling inference** with CellChat
+- 🛠️ **Modular script-based structure** suitable for any 10x-style input
+- 🗺️ **Spatial transcriptomics** workflows with Seurat v5 Spatial and SpaGCN
+- 🔗 **Integration** of scRNA-seq with ST and other modalities (Harmony, MOFA+, scVI)
 
 # The Cell Type Annotation
 
@@ -111,62 +113,66 @@ For GSE165722 dataset
 - Adjust cluster/marker names according to your dataset annotations.
 
 
-## 📁 Folder Structure
+## 📁 Repository Structure
 
 ```
 OmicsDesk/
-├── LICENSE
-├── README.md
-├── OmicsDesk.Rproj
-├── OmicsDesk_Analysis.Rmd
-├── OmicsDesk_Analysis_static.Rmd
-├── data/
-│   ├── README.md
-│   └── mock_cellranger_output/
-│       ├── barcodes.tsv.gz
-│       ├── features.tsv.gz
-│       └── matrix.mtx.gz
-├── docs/
-│   ├── OmicsDesk_Analysis.html
-│   └── index.html
-├── install.R
-├── integration/
-│   ├── 00_integration_visualization.R
-│   ├── 01_multi_batch_correction.R
-│   ├── 02_multi_modal_analysis.R
-│   └── 03_scRNA_ST_integration.R
-├── paper/
-│   ├── paper.bib
-│   └── paper.md
-├── results/
-│   ├── plots/
-│   │   └── .gitkeep
-│   ├── rds/
-│   └── tables/
-│       └── .gitkeep
-├── scripts/
-│   ├── 00_download_GSE165722.R
-│   ├── 00_load_all_samples.R
-│   ├── 01_qc_filtering.R
-│   ├── 02_normalization_clustering.R
-│   ├── 03_markers_annotation_figures.R
-│   ├── 04_trajectory_monocle.R
-│   ├── 05_cellchat_interaction.R
-│   ├── 06_cytotrace.R
-│   ├── 07_scenic.R
-│   ├── 08_gsea.R
-│   ├── 09_auc_score.R
-│   ├── 10_subset_immune.R
-│   ├── 11_cellchat_full.R
-│   ├── 12_plots_summary.R
-│   └── GSE165722/
-│       ├── 00_load_all_samples.R
-│       └── 01_qc_filtering.R
-└── spatial/
-    ├── 00_spatial_analysis.R
-    ├── 01_spatial_mapping.R
-    ├── 02_spatial_qc.R
-    └── 03_spatial_visualization.R
+├── data/                         # Example datasets or download instructions
+│   ├── README.md                 # Description of included data and download links
+│   └── mock_cellranger_output/   # Example 10x Genomics Cell Ranger output format
+│       ├── barcodes.tsv.gz       # Spot/cell barcodes
+│       ├── features.tsv.gz       # Gene/feature annotations
+│       └── matrix.mtx.gz         # Sparse expression matrix
+│
+├── docs/                         # Documentation and rendered analysis reports
+│   ├── index.html                # Landing page for project documentation
+│   └── OmicsDesk_Analysis.html # Full rendered HTML of the main analysis
+│
+├── integration/                  # Multi-modal integration workflows
+│   ├── 00_integration_visualization.R  # Compare UMAP before/after integration
+│   ├── 01_multi_batch_correction.R     # Batch correction using Harmony/CCA
+│   ├── 02_multi_modal_analysis.R       # MOFA+ and scVI/totalVI guidance
+│   └── 03_scRNA_ST_integration.R       # End-to-end scRNA ↔ ST label transfer
+│
+├── paper/                        # JOSS paper and references
+│   ├── paper.md                  # Manuscript for submission
+│   └── paper.bib                 # Bibliography in BibTeX format
+│
+├── results/                      # Output directory for figures, tables, and R objects
+│   ├── plots/                    # Publication-ready plots (PNG, PDF, SVG)
+│   │   └── .gitkeep               # Keeps folder in Git when empty
+│   ├── rds/                      # Serialized Seurat objects
+│   └── tables/                   # Tab-delimited analysis outputs (e.g., marker genes)
+│       └── .gitkeep               # Keeps folder in Git when empty
+│
+├── scripts/                      # Main single-cell RNA-seq analysis scripts
+│   ├── 00_download_GSE165722.R          # Download GEO dataset GSE165722
+│   ├── 00_load_all_samples.R            # Load all samples into Seurat objects
+│   ├── 01_qc_filtering.R                # Quality control filtering
+│   ├── 02_normalization_clustering.R    # Normalize data, run PCA/UMAP, clustering
+│   ├── 03_markers_annotation_figures.R  # Identify markers, annotate clusters, make plots
+│   ├── 04_trajectory_monocle.R          # Pseudotime trajectory inference with Monocle3
+│   ├── 05_cellchat_interaction.R        # Ligand-receptor inference with CellChat
+│   ├── 06_cytotrace.R                   # Stemness scoring with CytoTRACE
+│   ├── 07_scenic.R                      # SCENIC regulon activity analysis
+│   ├── 08_gsea.R                        # Gene set enrichment analysis
+│   ├── 09_auc_score.R                   # AUC-based subtype scoring
+│   ├── 10_subset_immune.R               # Subset immune cell populations
+│   ├── 11_cellchat_full.R                # Full CellChat workflow
+│   └── 12_plots_summary.R               # Compile summary plots
+│
+├── spatial/                      # Spatial transcriptomics workflows
+│   ├── 00_spatial_analysis.R       # Spatial clustering + spatially variable genes
+│   ├── 01_spatial_mapping.R        # Label transfer from scRNA to ST
+│   ├── 02_spatial_qc.R             # QC for spatial data (spot/gene filtering)
+│   └── 03_spatial_visualization.R  # Plotting helpers for ST data
+│
+├── LICENSE                        # Open-source license
+├── README.md                      # Main project documentation
+├── install.R                      # Script to install required packages
+├── OmicsDesk.Rproj            # RStudio project file
+├── OmicsDesk_Analysis.Rmd     # Main interactive analysis notebook
+└── OmicsDesk_Analysis_static.Rmd # Static version of main analysis
 ```
 
 ## 🚀 Getting Started
