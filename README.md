@@ -114,16 +114,59 @@ For GSE165722 dataset
 ## 📁 Folder Structure
 
 ```
-SingleCellDesk/
-├── data/                     # Input data (10x count matrix)
-├── results/                  # Output Seurat objects, plots, and tables
-├── scripts/                  # Modular R scripts for each analysis step
-├── paper/                    # JOSS paper and references
-├── tests/                    # Unit tests using testthat
-├── install.R                 # R dependency installer
-├── DESCRIPTION               # Package metadata
-├── .github/                  # GitHub Actions CI workflow
-└── SingleCellDesk.Rproj      # RStudio project file
+OmicsDesk/
+├── LICENSE
+├── README.md
+├── OmicsDesk.Rproj
+├── OmicsDesk_Analysis.Rmd
+├── OmicsDesk_Analysis_static.Rmd
+├── data/
+│   ├── README.md
+│   └── mock_cellranger_output/
+│       ├── barcodes.tsv.gz
+│       ├── features.tsv.gz
+│       └── matrix.mtx.gz
+├── docs/
+│   ├── OmicsDesk_Analysis.html
+│   └── index.html
+├── install.R
+├── integration/
+│   ├── 00_integration_visualization.R
+│   ├── 01_multi_batch_correction.R
+│   ├── 02_multi_modal_analysis.R
+│   └── 03_scRNA_ST_integration.R
+├── paper/
+│   ├── paper.bib
+│   └── paper.md
+├── results/
+│   ├── plots/
+│   │   └── .gitkeep
+│   ├── rds/
+│   └── tables/
+│       └── .gitkeep
+├── scripts/
+│   ├── 00_download_GSE165722.R
+│   ├── 00_load_all_samples.R
+│   ├── 01_qc_filtering.R
+│   ├── 02_normalization_clustering.R
+│   ├── 03_markers_annotation_figures.R
+│   ├── 04_trajectory_monocle.R
+│   ├── 05_cellchat_interaction.R
+│   ├── 06_cytotrace.R
+│   ├── 07_scenic.R
+│   ├── 08_gsea.R
+│   ├── 09_auc_score.R
+│   ├── 10_subset_immune.R
+│   ├── 11_cellchat_full.R
+│   ├── 12_plots_summary.R
+│   └── GSE165722/
+│       ├── 00_load_all_samples.R
+│       └── 01_qc_filtering.R
+└── spatial/
+    ├── 00_spatial_analysis.R
+    ├── 01_spatial_mapping.R
+    ├── 02_spatial_qc.R
+    └── 03_spatial_visualization.R
 ```
 
 ## 🚀 Getting Started
